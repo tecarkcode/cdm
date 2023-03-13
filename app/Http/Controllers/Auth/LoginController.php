@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+// use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
@@ -43,20 +44,17 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $field = filter_var($request->input('email_cnpj'), FILTER_VALIDATE_EMAIL) ? 'email' : 'cnpj';
-        $request->merge([$field => $request->input('email_cnpj')]);
-        
+        $field = filter_var($request->post('email_cnpj'), FILTER_VALIDATE_EMAIL) ? 'email' : 'cnpj';
+        $request->merge([$field => $request->post('email_cnpj')]);
+    
         $credentials = $request->only($field, 'password');
-
+    
         if (!Auth::attempt($credentials)) {
-            return redirect()->route('login')->with('error','Dados incorretos, tente novamente.');
+            return redirect()->route('login')
+                ->withInput()
+                ->withErrors(['message' => 'Dados incorretos, tente novamente.']);
         }
-
-        // Auth::user()->player->update([
-        //     'login_last' => Carbon::now(),
-        //     'ip_last' => $request->ip()
-        // ]);
-
+    
         return redirect()->route('user.dashboard');
     }
 }

@@ -20,11 +20,8 @@
 
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-4">
-                        <div class="text-center">   
-                            <a href="index.html">
-                                <img src="assets/images/logo-dark.png" alt="" height="22" class="mx-auto">
-                            </a>
-                            <p class="text-muted mt-2 mb-4">~</p>
+                        <div class="text-center mb-4">
+                            <a href="/"><img src="assets/images/logo-milionarios.svg" alt="" height="80" class="mx-auto"> </a>
                         </div>
                         <div class="card">
                             <div class="card-body p-4">
@@ -33,10 +30,11 @@
                                     <h4 class="text-uppercase mt-0">Acessar Plataforma</h4>
                                 </div>
 
-                                <form action="#">
+                                <form action="{{ route('login') }}" method="post">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="email_cnpj" class="form-label">CNPJ/E-mail</label>
-                                        <input class="form-control" type="email" id="email_cnpj" name="email_cnpj" placeholder="Digite seu e-amil ou CNPJ">
+                                        <input class="form-control" type="text" id="email_cnpj" name="email_cnpj" placeholder="Digite seu e-amil ou CNPJ">
                                     </div>
 
                                     <div class="mb-3">
@@ -51,16 +49,20 @@
                                         </div>
                                     </div>
 
+                                    @if ($errors->has('message'))
+                                        <div class="alert alert-danger"><i class=" fas fa-exclamation-triangle"></i> {{ $errors->first('message') }}</div>
+                                    @endif
+
                                     <div class="mb-3 d-grid text-center">
-                                        <button class="btn btn-primary" type="submit"><i class="fa fa-lock-open  me-1"></i> Entrar</button>
+                                        <button class="btn btn-warning" type="submit"><i class="fa fa-lock-open  me-1"></i> Entrar</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="pages-recoverpw.html" class="text-muted ms-1"><i class="fa fa-lock me-1"></i> Esqueci minha senha!</a></p>
-                                <p class="text-muted">Não tem uma conta? <a href="pages-register.html" class="text-dark ms-1"><b>Criar conta</b></a></p>
+                                <p> <a href="#" class="text-muted ms-1"><i class="fa fa-lock me-1"></i> Esqueci minha senha!</a></p>
+                                <p class="text-muted">Não tem uma conta? <a href="{{ route('register') }}" class="text-dark ms-1"><b>Criar conta</b></a></p>
                             </div> 
                         </div>
                     </div> 

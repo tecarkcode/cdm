@@ -5,7 +5,6 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: var(--ct-link-color);
     font-size: 18px;
     font-weight: bold;
     color: var(--ct-component-active-color);
@@ -28,19 +27,20 @@
 }
 
 .payment-method {
-    border: 1px solid #ccc;
+    border: 2px #313844 solid none;
     box-sizing: border-box;
     float: left;
+    width: 110px;
     height: 60px;
     position: relative;
-    width: 110px;
 }
 
 .payment-method + .payment-method {
     margin-left: 5px;
 }
 .payment-method label {
-    background: #fff no-repeat center center;
+    border-radius: 8px;
+    background: #FFF no-repeat center center;
     bottom: 1px;
     cursor: pointer;
     display: block;
@@ -53,19 +53,19 @@
     white-space: nowrap;
   }
   
-  .pagseguro label {
-    background-image: url(uol.png);
+  .boleto label {
+    background-image: url(../images/boleto.png);
   }
   
-  .paypal label {
-    background-image: url(paypal.png);
+  .creditCard label {
+    background-image: url(../images/creditcard.png);
   }
   
-  .bankslip label {
-    background-image: url(bankslip.png);
+  .pix label {
+    background-image: url(../images/pix.png);
   }
-  .payment-methods input:focus + label {
-    outline: 2px dotted #21b4d0;
+  .payment-methods input:checked + label {
+    outline: 3px solid #f9c851 ;
   }
   
   
