@@ -13,17 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('profile_types')) {
-            Schema::create('profile_types', function (Blueprint $table) {
+        if (!Schema::hasTable('profile_subtypes')) {
+            Schema::create('profile_subtypes', function (Blueprint $table) {
                 $table->id();
+                $table->unsignedBigInteger('profile_id')->nullable();
                 $table->string('name', 120);
                 $table->longText('description');
-                $table->tinyInteger('has_subtype')->default(0)->comment("0=Não/1=Sim → Se há subcategoria o dashboard será encontrado na profile_subtypes.");
-                $table->string('dashboard', 120)->nullable();
+                $table->longText('hide_description')->nullable()->comment("Descrição interna.");
                 $table->integer('status')->default(1);
+                $table->string('dashboard', 120);
 
                 $table->softDeletes();
                 $table->timestamps();
+
+                $table->foreign('profile_id')->references('id')->on('profile_types')->onDelete('cascade');
+
+                $table->comment("Tabela que registrará subprofiles (Ex: Investidor → Júnior).");
             });
         }
     }
@@ -35,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile_types');
+        Schema::dropIfExists('profile_subtypes');
     }
 };

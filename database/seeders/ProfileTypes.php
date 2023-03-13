@@ -18,7 +18,10 @@ class ProfileTypes extends Seeder
         $items = [
             ['id' => 1, 'name' => 'Administrator', 'description' => 'Usuário administrador.', 'dashboard' => 'admin'],
             ['id' => 2, 'name' => 'Usuário', 'description' => 'Usuário normal.', 'dashboard' => 'user'],
+            ['id' => 3, 'name' => 'Investidor', 'description' => 'Usuário investidor.', 'has_subtype' => 1],
+            ['id' => 4, 'name' => 'Empresário', 'description' => 'Empresário.', 'has_subtype' => 1]
         ];
+
         foreach ($items as $item) {
             ProfileType::create($item);
         }
