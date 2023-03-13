@@ -13,23 +13,26 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('profile_id');
-            $table->string('name', 120);
-            $table->string('cpf', 50)->nullable();
-            $table->string('cnpj', 50)->nullable();
-            $table->string('email', 120)->unique();
-            $table->string('phone', 20)->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            
-            $table->softDeletes();
-            $table->timestamps();
+        if (!Schema::hasTable('users')) {
+            Schema::create('users', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('profile_id');
+                $table->unsignedBigInteger('profile_subid')->nullable()->comment("Se houver, será a subcategoria do perfil.");
+                $table->string('name', 120);
+                $table->string('cpf', 50)->nullable();
+                $table->string('cnpj', 50)->nullable();
+                $table->string('email', 120)->unique();
+                $table->string('phone', 20)->nullable();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->rememberToken();
+                
+                $table->softDeletes();
+                $table->timestamps();
 
-            $table->foreign('profile_id')->references('id')->on('profile_types')->onDelete('cascade');
-        });
+                $table->foreign('profile_id')->references('id')->on('profile_types')->onDelete('cascade');
+            });
+        }
     }
 
     /**
