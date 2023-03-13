@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class LoginController extends Controller
@@ -41,26 +43,20 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $field = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $request->merge([$field => $request->input('username')]);
+        $field = filter_var($request->input('email_cnpj'), FILTER_VALIDATE_EMAIL) ? 'email' : 'cnpj';
+        $request->merge([$field => $request->input('email_cnpj')]);
         
         $credentials = $request->only($field, 'password');
 
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        if (!Auth::attempt($credentials)) {
+            return redirect()->route('login')->with('error','Dados incorretos, tente novamente.');
         }
 
-        auth('api')->user()->player->update([
-            'login_last' => Carbon::now(),
-            'ip_last' => $request->ip()
-        ]);
+        // Auth::user()->player->update([
+        //     'login_last' => Carbon::now(),
+        //     'ip_last' => $request->ip()
+        // ]);
 
-        return $this->respondWithToken($token);
+        return redirect()->route('user.dashboard');
     }
-
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     $request->session()->regenerate();
-    //     return redirect()->intended('/user/dashboard');
-    // }
 }

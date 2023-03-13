@@ -1,0 +1,71 @@
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--ct-link-color);
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--ct-component-active-color);
+    margin-right: 20px;
+}
+.title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.payment-methods {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.payment-methods:after {
+    content: "";
+    clear: both;
+}
+
+.payment-method {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    float: left;
+    height: 60px;
+    position: relative;
+    width: 110px;
+}
+
+.payment-method + .payment-method {
+    margin-left: 5px;
+}
+.payment-method label {
+    background: #fff no-repeat center center;
+    bottom: 1px;
+    cursor: pointer;
+    display: block;
+    font-size: 0;
+    left: 1px;
+    position: absolute;
+    right: 1px;
+    text-indent: 100%;
+    top: 1px;
+    white-space: nowrap;
+  }
+  
+  .pagseguro label {
+    background-image: url(uol.png);
+  }
+  
+  .paypal label {
+    background-image: url(paypal.png);
+  }
+  
+  .bankslip label {
+    background-image: url(bankslip.png);
+  }
+  .payment-methods input:focus + label {
+    outline: 2px dotted #21b4d0;
+  }
+  
+  
