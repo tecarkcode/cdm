@@ -64,6 +64,8 @@
         </div>
         
         <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script>
         <script src="assets/js/app.min.js"></script>
     </body>
 </html>
