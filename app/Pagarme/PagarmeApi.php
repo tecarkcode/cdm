@@ -75,7 +75,7 @@ class PagarmeApi
             $details = $e->getMessage();
         }
 
-        return response()->json(['content' => $result, 'details' => $details], 200);
+        return ['content' => $result, 'details' => $details];
     }
 
     /**
@@ -126,7 +126,6 @@ class PagarmeApi
     {
         return $this->sendRequest('DELETE', 'invoices/'. $invoice_id);
     }
-
     /**
      * Metodo responsável para enviar as informações para o Pagar.me
      */
@@ -172,6 +171,6 @@ class PagarmeApi
             $details = $e->getMessage();
         }
 
-        return response()->json(['content' => $result, 'details' => $details], 200);
+        return ['content' => $result, 'details' => $details];
     }
 }

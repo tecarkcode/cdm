@@ -67,5 +67,39 @@
   .payment-methods input:checked + label {
     outline: 3px solid #f9c851 ;
   }
+  .iti {
+    width: 100%;
+  }
+  .iti__country-list {
+    background: #313844;
+    border: 1px solid #424C5C;
+  }
+  .iti__divider {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #424C5C;
+  }
+  #phone::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+  }
   
+  #phone:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: transparent;
+  }
   
+  #phone::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+  }
+  
+  #phone:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+  }
+  
+  #phone::placeholder {
+    /* modern browsers */
+    color: transparent;
+  }
