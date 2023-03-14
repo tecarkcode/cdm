@@ -16,7 +16,8 @@ return new class extends Migration
         if (!Schema::hasTable('profile_subtypes')) {
             Schema::create('profile_subtypes', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('profile_id')->nullable();
+                $table->unsignedBigInteger('profile_id');
+                $table->unsignedBigInteger('profile_sub_id')->comment("Nível do perfil (Jr, Sênior, etc..)");
                 $table->string('name', 120);
                 $table->longText('description');
                 $table->longText('hide_description')->nullable()->comment("Descrição interna.");

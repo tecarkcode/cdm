@@ -111,6 +111,18 @@ class Users extends Seeder
                 'email_verified_at' => null,
                 'password' => '$2y$10$MfQCqL2pAkJnqYAbNxVpzehcPEm2ReAGT.3AcQWy8gWjMQRCux3C6',
                 'remember_token' => null
+            ],
+            [
+                'profile_id' => 4,
+                'profile_subid' => 4,
+                'name' => '[Company] Million Company',
+                'cpf' => '123.456.789-10',
+                'cnpj' => '45.111.222/0001-10',
+                'email' => 'company@example.org',
+                'phone' => null,
+                'email_verified_at' => null,
+                'password' => '$2y$10$MfQCqL2pAkJnqYAbNxVpzehcPEm2ReAGT.3AcQWy8gWjMQRCux3C6',
+                'remember_token' => null
             ]
         ];
 

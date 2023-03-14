@@ -17,7 +17,7 @@ return new class extends Migration
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('profile_id');
-                $table->unsignedBigInteger('profile_subid')->nullable()->comment("Se houver, será a subcategoria do perfil.");
+                $table->unsignedBigInteger('profile_sub_id')->nullable()->comment("Se houver, será a subcategoria do perfil.");
                 $table->string('name', 120);
                 $table->string('cpf', 50)->nullable();
                 $table->string('cnpj', 50)->nullable();
