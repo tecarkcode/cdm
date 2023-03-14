@@ -23,7 +23,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($profiles as $key => $profile)                            
+                            @foreach($profiles as $key => $profile)
                                 <tr>
                                     <td>{{ $profile->id }}</td>
                                     <td>{{ $profile->name }}</td>
@@ -37,7 +37,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div> 
+            </div>
         </div>
     
     </div>
