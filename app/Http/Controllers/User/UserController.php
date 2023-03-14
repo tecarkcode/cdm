@@ -7,16 +7,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
-    public function AdminDashboard()
+    public function dashboard()
     {
-        return 'Admin Dashboard';
-        // view('admin.index');
-    }
-
-    public function IndexDashboard()
-    {
-        return 'User Dashboard';
-        // view('user.index');
+        return view('user.index');
     }
 }

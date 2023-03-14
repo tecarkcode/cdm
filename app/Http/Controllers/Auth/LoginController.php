@@ -69,7 +69,6 @@ class LoginController extends Controller
         return redirect()->route($profile);
     }
 
-
     function getAppropriateProfile($user)
     {
         $profile = "user.dashboard";
@@ -94,11 +93,10 @@ class LoginController extends Controller
                 ? ProfileType::whereId($profileId)
                 : $tmpProfile = ProfileSubType::whereId($profileSubId)
                     ->whereProfileId($profileId)
-            )->first();
+            )->whereStatus(1)->first();
 
-        $tmpProfile = $tmpProfile->dashboard;
         // Verify if Dashboard is Ok
-        if(is_null($tmpProfile))
+        if(is_null($tmpProfile) || is_null($tmpProfile = $tmpProfile->dashboard))
         {
             Auth::logout();
             dd("A dashboard apropriada não foi encontrada.");
