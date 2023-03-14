@@ -60,7 +60,7 @@ class LoginController extends Controller
 
         $user = User::whereId(Auth::id())->first();
         // Get the Appropriate Profile
-        $profile = $this->getAppropriateProfile($user);
+        $profile = $this->getMainProfile($user);
         if(!$profile)
         {
             dd('Não foi possível localizar o profile.');
@@ -69,7 +69,7 @@ class LoginController extends Controller
         return redirect()->route($profile);
     }
 
-    function getAppropriateProfile($user)
+    function getMainProfile($user)
     {
         $profile = "user.dashboard";
         // !is_a($user, Collection::class) // check if is a Collection
@@ -86,14 +86,9 @@ class LoginController extends Controller
             dd("Houve um erro ao identificar o tipo de perfil, por favor, tente novamente mais tarde.");
         }
 
-        $profileSubId = $user->profile_subid;
         // Get the Appropriate Dashboard
-        $tmpProfile = (
-            is_null($profileSubId)
-                ? ProfileType::whereId($profileId)
-                : $tmpProfile = ProfileSubType::whereId($profileSubId)
-                    ->whereProfileId($profileId)
-            )->whereStatus(1)->first();
+        $tmpProfile = ProfileType::whereId($profileId)
+            ->whereStatus(1)->first();
 
         // Verify if Dashboard is Ok
         if(is_null($tmpProfile) || is_null($tmpProfile = $tmpProfile->dashboard))

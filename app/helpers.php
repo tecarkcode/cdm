@@ -7,6 +7,7 @@ if(!function_exists('getAppropriateProfile'))
 {
     function getAppropriateProfile($user)
     {
+        dd("HELPERS: Agora funfou");
         $profile = "user.dashboard";
         if(is_null($user) || !is_a($user, Collection::class))
         {
