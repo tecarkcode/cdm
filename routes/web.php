@@ -30,11 +30,9 @@ Route::controller(PaymentController::class)->group(function () {
     Route::get('payment', 'payment'); 
 });
 
-
 Route::controller(PaymentController::class)->group(function () {
     Route::get('payment', 'payment'); 
 });
-
 
 Route::prefix('admin')->middleware(['auth'])->group(base_path('routes/web/admin.php'));
 Route::prefix('users')->middleware(['auth'])->group(base_path('routes/web/user.php'));
