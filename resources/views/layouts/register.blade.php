@@ -43,7 +43,6 @@
     <script src="assets/libs/parsleyjs/parsley.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="assets/js/app.min.js"></script>
-
     @stack('scripts')
 
 </body>

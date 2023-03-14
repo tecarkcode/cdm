@@ -34,25 +34,19 @@
         </div>
 
         <div class="mb-4">
-            <ul class="payment-methods">
-                <li class="payment-method boleto">
-                    <input name="payment_methods" type="radio" id="boleto" value="1">
-                    <label for="boleto">Boleto</label>
-                </li>
-                <li class="payment-method creditCard">
-                    <input name="payment_methods" type="radio" id="creditCard" value="2">
-                    <label for="creditCard">Cartão credito</label>
-                </li>
-                <li class="payment-method pix">
-                    <input name="payment_methods" type="radio" id="pix" value="3">
-                    <label for="pix">PIX</label>
-                </li>
-            </ul>
-        </div>
-        <div style="height: 80px;"></div>
-
-        <div class="row">
             
+                <input type="radio" class="btn-check" name="payment" id="payment1" autocomplete="off">
+                <label class="btn btn-warning p-3" for="payment1"><i class="fas fa-list"></i> <b class="ms-2">Boleto</b></label>
+              
+                <input type="radio" class="btn-check" name="payment" id="payment2" autocomplete="off">
+                <label class="btn btn-warning p-3" for="payment2"><i class="fas fa-credit-card"></i> <b class="ms-2">Cartão de crédito</b></label>
+              
+                <input type="radio" class="btn-check" name="payment" id="payment3" autocomplete="off">
+                <label class="btn btn-warning p-3" for="payment3"><i class="fas fa-money-bill-wave"></i> <b class="ms-2">PIX</b></label>
+        </div>
+        {{-- <div style="height: 80px;"></div> --}}
+
+        <div class="row d-none">            
             <div class="col-md-12">
                 <div class="mb-3">
                     <label for="document" class="form-label">CPF</label>
@@ -85,9 +79,23 @@
             </div>
         </div>
 
-        <button class="btn w-100 btn-warning"><i class="fa fa-check"></i> Efetuar pagamento</button>       
+        <button class="btn w-100 btn-warning p-2" onclick="notification()"><i class="fa fa-check"></i> Efetuar pagamento</button>       
     </form>
+
     @push('scripts')
+        <script>
+            const id = 10;
+            function notification()
+            {
+                console.log('[Notification] Initialize...');
+                
+                Echo.channel('channel-public').listen('PaymentStatusUpdated', e => {
+                    alert(e.status);
+                });
+
+                console.log('[Notification] Initialized.');
+            }            
+        </script>
         <script>
             var input = document.querySelector("#phone");
             var iti = window.intlTelInput(input, {
@@ -99,4 +107,5 @@
             $(input).addClass("form-control").attr('placeholder', '');
         </script>        
     @endpush
+
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Pagarme\PagarmeApi;
 use Illuminate\Support\Facades\Request;
+use Pusher\Pusher;
 
 class PaymentController extends Controller
 {
@@ -112,5 +113,22 @@ class PaymentController extends Controller
         echo '<pre>';
         echo $retorno['content'];
         echo '</pre>';
+    }
+
+    
+    public function updateStatus(Request $request)
+    {
+        // Lógica para atualizar o status do pagamento...
+
+        // Envie o evento para o Pusher
+        $pusher = new Pusher(env('PUSHER_APP_KEY'), env('PUSHER_APP_SECRET'), env('PUSHER_APP_ID'), [
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'useTLS' => true
+        ]);
+
+        $pusher->trigger('PaymentStatusUpdated', 'status-updated', [
+            'payment' => rand(1, 999),
+            'status' => 'paid'
+        ]);
     }
 }

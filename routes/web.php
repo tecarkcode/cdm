@@ -1,8 +1,10 @@
 <?php
 
+use App\Events\PaymentStatusUpdated;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\PaymentController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +34,13 @@ Route::controller(PaymentController::class)->group(function () {
 
 Route::controller(PaymentController::class)->group(function () {
     Route::get('payment', 'payment'); 
+    //Route::get('teste-notification', 'updateStatus');
+
+    Route::get('teste-notification', function (Request $request) {
+        $paymentStatus = 'paid';    
+        event(new PaymentStatusUpdated(1, $paymentStatus));    
+        return response()->json(['message' => 'Status de pagamento atualizado com sucesso.']);
+    });
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(base_path('routes/web/admin.php'));
