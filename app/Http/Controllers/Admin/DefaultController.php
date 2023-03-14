@@ -11,7 +11,7 @@ class DefaultController extends Controller
 {
     public function profiles()
     {
-        $profiles = ProfileType::get();
+        $profiles = ProfileType::withTrashed()->get();
         return view('admin.profiles.profiles', compact('profiles'));
     }
 

@@ -35,4 +35,6 @@ Route::controller(PaymentController::class)->group(function () {
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(base_path('routes/web/admin.php'));
-Route::prefix('users')->middleware(['auth'])->group(base_path('routes/web/user.php'));
+Route::prefix('user')->middleware(['auth'])->group(base_path('routes/web/user.php'));
+Route::prefix('investor')->middleware(['auth'])->group(base_path('routes/web/investor.php'));
+Route::prefix('business')->middleware(['auth'])->group(base_path('routes/web/business.php'));

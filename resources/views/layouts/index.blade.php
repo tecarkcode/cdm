@@ -687,6 +687,9 @@
 
         <!-- App js-->
         <script src="{{ asset('assets/js/app.min.js') }}"></script>
+
+        <!-- Main JS → by Swatt -->
+        <script src="{{ asset('assets/js/main.js?'.time()) }}"></script>
         
     </body>
 </html>
