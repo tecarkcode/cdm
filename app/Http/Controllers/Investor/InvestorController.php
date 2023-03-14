@@ -25,7 +25,7 @@ class InvestorController extends Controller
             is_null($profileSubId)
                 ? null
                 : $tmpProfile = ProfileSubType::whereProfileId($profileId)
-                    ->whereProfileSubid($profileSubId)
+                    ->whereProfileSubId($profileSubId)
             )->whereStatus(1)->first();
 
         if(!is_null($tmpProfile))

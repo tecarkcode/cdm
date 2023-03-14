@@ -12,6 +12,7 @@ class ProfileSubType extends Model
 
     protected $fillable = [
         'profile_id',
+        'profile_sub_id',
         'name',
         'description',
         'status',
