@@ -25,7 +25,6 @@ class User extends Authenticatable
         'cnpj',
         'phone',
         'password'
-
     ];
 
     /**

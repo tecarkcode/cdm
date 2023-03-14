@@ -330,8 +330,7 @@
                     </div>
 
                     <div id="sidebar-menu">
-                        Menu
-                        {{-- <ul id="side-menu">
+                        <ul id="side-menu">
 
                             <li class="menu-title">Navigation</li>
                 
@@ -807,7 +806,7 @@
                                     </ul>
                                 </div>
                             </li>
-                        </ul> --}}
+                        </ul>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -816,7 +815,9 @@
             <div class="content-page">
                 <div class="content">
                     <div class="container-fluid">
-                        Conteudo
+                        
+                        @yield('section')
+
                     </div>
                 </div>
                 
@@ -995,7 +996,7 @@
         <script src="{{ asset('assets/libs/jquery-knob/jquery.knob.min.js') }}"></script>
 
           <!--Morris Chart-->
-        <script src="{{ asset('assets/libs/morris.js06/morris.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/morris.min.js') }}"></script>
         <script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
   
         <!-- Dashboar init js-->

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use App\Models\ProfileType;
+use Illuminate\Http\Request;
+use App\Models\ProfileSubType;
 use App\Http\Controllers\Controller;
+// use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Request;
-use Illuminate\Http\Request;
 
 
 class LoginController extends Controller
@@ -54,7 +57,54 @@ class LoginController extends Controller
                 ->withInput()
                 ->withErrors(['message' => 'Dados incorretos, tente novamente.']);
         }
-    
-        return redirect()->route('user.dashboard');
+
+        $user = User::whereId(Auth::id())->first();
+        // Get the Appropriate Profile
+        $profile = $this->getAppropriateProfile($user);
+        if(!$profile)
+        {
+            dd('Não foi possível localizar o profile.');
+        }
+
+        return redirect()->route($profile);
+    }
+
+
+    function getAppropriateProfile($user)
+    {
+        $profile = "user.dashboard";
+        // !is_a($user, Collection::class) // check if is a Collection
+        if(is_null($user))
+        {
+            return false;
+        }
+        
+        $profileId = $user->profile_id;
+        // If don't found the profile Id
+        if(!$profileId || is_null($profileId))
+        {
+            Auth::logout();
+            dd("Houve um erro ao identificar o tipo de perfil, por favor, tente novamente mais tarde.");
+        }
+
+        $profileSubId = $user->profile_subid;
+        // Get the Appropriate Dashboard
+        $tmpProfile = (
+            is_null($profileSubId)
+                ? ProfileType::whereId($profileId)
+                : $tmpProfile = ProfileSubType::whereId($profileSubId)
+                    ->whereProfileId($profileId)
+            )->first();
+
+        $tmpProfile = $tmpProfile->dashboard;
+        // Verify if Dashboard is Ok
+        if(is_null($tmpProfile))
+        {
+            Auth::logout();
+            dd("A dashboard apropriada não foi encontrada.");
+        }
+
+        $profile = $tmpProfile.".dashboard";
+        return $profile;
     }
 }

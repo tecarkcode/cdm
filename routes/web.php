@@ -25,4 +25,5 @@ Route::get('/', ['middleware' => 'guest', function () {
     return view('auth.login');
 }]);
 
+Route::prefix('admin')->middleware(['auth'])->group(base_path('routes/web/admin.php'));
 Route::prefix('users')->middleware(['auth'])->group(base_path('routes/web/user.php'));

@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+    public function AdminDashboard()
+    {
+        return 'Admin Dashboard';
+        // view('admin.index');
+    }
+
     public function IndexDashboard()
     {
-        return 'oi';
+        return 'User Dashboard';
+        // view('user.index');
     }
 }

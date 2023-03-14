@@ -18,7 +18,6 @@ return new class extends Migration
                 $table->id();
                 $table->string('name', 120);
                 $table->longText('description');
-                $table->tinyInteger('has_subtype')->default(0)->comment("0=Não/1=Sim → Se há subcategoria o dashboard será encontrado na profile_subtypes.");
                 $table->string('dashboard', 120)->nullable();
                 $table->integer('status')->default(1);
 
