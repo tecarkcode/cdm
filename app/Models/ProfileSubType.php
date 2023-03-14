@@ -20,4 +20,9 @@ class ProfileSubType extends Model
     ];
 
     protected $table = 'profile_subtypes';
+
+    public function profile()
+    {
+        return $this->hasOne(ProfileType::class, 'id', 'profile_id');
+    }
 }

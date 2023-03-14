@@ -25,7 +25,9 @@ class BusinessController extends Controller
                 ? null
                 : $tmpProfile = ProfileSubType::whereProfileId($profileId)
                     ->whereProfileSubId($profileSubId)
-            )->whereStatus(1)->first();
+                    ->whereStatus(1)
+                    ->first()
+            );
         
         if(!is_null($tmpProfile))
         {

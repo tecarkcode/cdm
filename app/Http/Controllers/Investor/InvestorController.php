@@ -20,13 +20,15 @@ class InvestorController extends Controller
         }
         
         $profileId = $user->profile_id;
-        $profileSubId = $user->profile_subid;
+        $profileSubId = $user->profile_sub_id;
         $tmpProfile = (
             is_null($profileSubId)
                 ? null
-                : $tmpProfile = ProfileSubType::whereProfileId($profileId)
+                : ProfileSubType::whereProfileId($profileId)
                     ->whereProfileSubId($profileSubId)
-            )->whereStatus(1)->first();
+                    ->whereStatus(1)
+                    ->first()
+            );
 
         if(!is_null($tmpProfile))
         {
